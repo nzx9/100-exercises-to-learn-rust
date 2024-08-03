@@ -1,9 +1,11 @@
 pub fn factorial(n: u32) -> u32 {
-    let mut result = 1;
-    for i in 1..=n {
+    let mut result = 1u32;
+    for i in 1..n + 1 {
         // Use saturating multiplication to stop at the maximum value of u32
         // rather than overflowing and wrapping around
-        result *= i;
+
+        result = result.saturating_mul(i);
+        println!("{}", result);
     }
     result
 }
