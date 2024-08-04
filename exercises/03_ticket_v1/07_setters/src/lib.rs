@@ -9,10 +9,10 @@ pub struct Ticket {
 }
 
 impl Ticket {
-    pub fn new(self, title: String, description: String, status: String) -> Ticket {
-        self.val_title(&title);
-        self.val_description(&description);
-        self.val_status(&status);
+    fn new(title: String, description: String, status: String) -> Ticket {
+        crate::Ticket::val_title(&title);
+        crate::Ticket::val_description(&description);
+        crate::Ticket::val_status(&status);
 
         Ticket {
             title,
@@ -33,7 +33,7 @@ impl Ticket {
         &self.status
     }
 
-    fn val_title(&self, title: &String) -> bool {
+    fn val_title(title: &String) -> bool {
         if title.is_empty() {
             panic!("Title cannot be empty");
         }
@@ -43,7 +43,7 @@ impl Ticket {
         true
     }
 
-    fn val_description(&self, description: &String) {
+    fn val_description(description: &String) {
         if description.is_empty() {
             panic!("Description cannot be empty");
         }
@@ -52,24 +52,24 @@ impl Ticket {
         }
     }
 
-    fn val_status(&self, status: &String) {
+    fn val_status(status: &String) {
         if status != "To-Do" && status != "In Progress" && status != "Done" {
             panic!("Only `To-Do`, `In Progress`, and `Done` statuses are allowed");
         }
     }
 
     pub fn set_title(&mut self, title: String) {
-        self.val_title(&title);
+        Ticket::val_title(&title);
         self.title = title.into();
     }
 
     pub fn set_description(&mut self, description: String) {
-        self.val_description(&description);
+        Ticket::val_description(&description);
         self.description = description.into();
     }
 
     pub fn set_status(&mut self, status: String) {
-        self.val_status(&status);
+        Ticket::val_status(&status);
         self.status = status.into();
     }
 }
